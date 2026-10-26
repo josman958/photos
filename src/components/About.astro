@@ -1,0 +1,79 @@
+---
+import Media from './Media.astro';
+import { about, aboutDetail } from '../data/photos';
+---
+
+<section class="about section" id="sobre-mi">
+  <div class="shell about__grid">
+    <div class="about__intro">
+      <p class="eyebrow" data-reveal>02 — Sobre mí</p>
+      <h2 class="about__title" data-split>
+        Soy Josman.<br />
+        <em>Camino, miro, disparo.</em>
+      </h2>
+
+      <div class="about__copy">
+        <p data-reveal>
+          Crecí entre montañas y aprendí a mirar antes de tener una cámara. Hoy
+          recorro rutas con la misma curiosidad del primer día: esperando esa luz
+          que dura segundos y cambia el sentido de un lugar.
+        </p>
+        <p data-reveal>
+          Trabajo paisaje, viaje y retrato. Me interesa lo que queda cuando el
+          paisaje se vuelve silencio: una persona, una huella, una sombra larga al
+          final del camino. Fotografío sin prisa, caminando con quien retrato.
+        </p>
+      </div>
+
+      <dl class="about__facts">
+        <div class="about__fact">
+          <dt>Base</dt>
+          <dd>Huaraz, Perú</dd>
+        </div>
+        <div class="about__fact">
+          <dt>Desde</dt>
+          <dd>2018</dd>
+        </div>
+        <div class="about__fact">
+          <dt>Formato</dt>
+          <dd>Digital · 35 mm</dd>
+        </div>
+      </dl>
+
+      <p class="about__signature" aria-hidden="true">Josman</p>
+    </div>
+
+    <div class="about__visual">
+      <div class="about__portrait">
+        <Media
+          src={about.src}
+          alt={about.alt}
+          widths={[600, 900, 1200]}
+          sizes="(max-width: 860px) 86vw, 38vw"
+          ratio="4 / 5"
+          parallax={0.12}
+          hover
+        />
+        <p class="about__caption">
+          <span>{about.caption}</span>
+          <span>01</span>
+        </p>
+      </div>
+
+      <div class="about__detail" aria-hidden="true">
+        <Media
+          src={aboutDetail.src}
+          alt={aboutDetail.alt}
+          widths={[400, 600, 900]}
+          sizes="(max-width: 860px) 45vw, 18vw"
+          ratio="4 / 3"
+          parallax={0.08}
+          reveal={false}
+        />
+        <p class="about__caption">
+          <span>{aboutDetail.caption}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

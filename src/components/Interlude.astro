@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets';
+import { interlude } from '../data/photos';
+---
+
+<section class="interlude" data-parallax-scope>
+  <div class="interlude__bg" data-parallax="0.14">
+    <Image
+      src={interlude.src}
+      alt={interlude.alt}
+      widths={[1000, 1600, 2200]}
+      sizes="100vw"
+      loading="lazy"
+      format="webp"
+      quality={80}
+    />
+  </div>
+
+  <div class="shell interlude__content">
+    <div class="interlude__grid">
+      <div data-reveal>
+        <p class="eyebrow eyebrow--light">04 — Cuaderno de ruta</p>
+        <blockquote class="interlude__quote" style="margin-top: 1.5rem">
+          {interlude.quote}
+        </blockquote>
+      </div>
+
+      <div class="interlude__note" data-reveal>
+        <span>{interlude.note}</span>
+        <span>Sin señal. Solo el sonido del viento.</span>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+---
+
+<dialog class="lightbox" data-lightbox aria-label="Galería de fotografías">
+  <div class="lightbox__stage">
+    <button
+      class="lightbox__close"
+      type="button"
+      data-lightbox-close
+      aria-label="Cerrar galería"
+    >
+      ✕
+    </button>
+
+    <button
+      class="lightbox__nav lightbox__nav--prev"
+      type="button"
+      data-lightbox-prev
+      aria-label="Fotografía anterior"
+    >
+      ←
+    </button>
+
+    <img class="lightbox__image" data-lightbox-image alt="" />
+
+    <button
+      class="lightbox__nav lightbox__nav--next"
+      type="button"
+      data-lightbox-next
+      aria-label="Fotografía siguiente"
+    >
+      →
+    </button>
+  </div>
+
+  <div class="lightbox__bar">
+    <p class="lightbox__caption" data-lightbox-caption aria-live="polite"></p>
+    <p class="lightbox__count" data-lightbox-count></p>
+  </div>
+</dialog>

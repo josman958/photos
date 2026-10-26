@@ -1,0 +1,76 @@
+---
+import { getImage } from 'astro:assets';
+import Media from './Media.astro';
+import { gallery } from '../data/photos';
+
+const items = await Promise.all(
+  gallery.map(async (photo) => ({
+    ...photo,
+    full: (
+      await getImage({
+        src: photo.src,
+        width: Math.min(1400, photo.src.width),
+        format: 'webp',
+        quality: 80,
+      })
+    ).src,
+  }))
+);
+---
+
+<section class="work section section--line" id="trabajo">
+  <div class="shell">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow" data-reveal>03 — Selección</p>
+        <h2 class="section-title" data-split>
+          Historias que caben<br />
+          <em>en un horizonte.</em>
+        </h2>
+      </div>
+      <p class="section-head__aside" data-reveal>
+        Una selección de rutas, retratos y lugares donde la luz hizo el resto.
+        Del 2024 al 2026, entre los Andes y otros caminos.
+      </p>
+    </header>
+
+    <div class="work__grid">
+      {items.map((photo, index) => (
+        <button
+          class="work__item"
+          type="button"
+          data-lightbox-item
+          data-full={photo.full}
+          data-alt={photo.alt}
+          data-title={photo.title}
+          data-meta={`${photo.category} · ${photo.location} · ${photo.year}`}
+          aria-label={`Abrir ${photo.title} en grande`}
+        >
+          <div class="work__media">
+            <Media
+              src={photo.src}
+              alt={photo.alt}
+              widths={photo.widths}
+              sizes={photo.sizes}
+              ratio={photo.ratio}
+              parallax={0.08}
+              hover
+            />
+            <span class="work__open" aria-hidden="true">↗</span>
+          </div>
+          <div class="work__caption">
+            <span>
+              {String(index + 1).padStart(2, '0')} — <strong>{photo.title}</strong>
+            </span>
+            <span>{photo.category} · {photo.location}</span>
+          </div>
+        </button>
+      ))}
+    </div>
+
+    <div class="work__note">
+      <span>Selección 2024 — 2026</span>
+      <span>Impresiones disponibles bajo pedido</span>
+    </div>
+  </div>
+</section>

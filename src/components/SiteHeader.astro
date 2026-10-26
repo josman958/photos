@@ -1,0 +1,54 @@
+---
+import { site } from '../data/site';
+---
+
+<header class="site-header" data-header>
+  <div class="shell site-header__inner">
+    <a class="brand" href="#inicio" aria-label="Josman, ir al inicio">
+      <span class="brand__name">{site.name}</span>
+      <span class="brand__sub">Fotografía</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Navegación principal">
+      {site.nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-cta" href="#contacto">
+        Hablemos <span aria-hidden="true">↗</span>
+      </a>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="site-menu"
+        data-menu-toggle
+      >
+        <span class="menu-toggle__lines" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div class="menu" id="site-menu" aria-hidden="true" data-menu>
+    <nav class="menu__links" aria-label="Menú móvil">
+      {site.nav.map((item, index) => (
+        <a href={item.href}>
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="menu__footer">
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer">
+        {site.instagramHandle}
+      </a>
+    </div>
+  </div>
+</header>

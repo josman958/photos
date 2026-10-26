@@ -1,0 +1,43 @@
+---
+import { site } from '../data/site';
+
+const [main, ...side] = site.testimonials;
+---
+
+<section class="voices section section--line" id="voces">
+  <div class="shell">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow" data-reveal>06 — Voces</p>
+        <h2 class="section-title" data-split>
+          Lo que queda<br />
+          <em>después del viaje.</em>
+        </h2>
+      </div>
+      <p class="section-head__aside" data-reveal>
+        Palabras de quienes caminaron conmigo. Al final, la foto es solo una
+        forma de recordar lo que ya estaba ahí.
+      </p>
+    </header>
+
+    <div class="voices__grid">
+      <div class="voices__main">
+        <span class="voices__mark" aria-hidden="true">“</span>
+        <blockquote class="voices__quote" data-reveal>{main.quote}</blockquote>
+        <p class="voices__person">
+          <strong>{main.name}</strong>
+          <span>{main.detail}</span>
+        </p>
+      </div>
+
+      <div class="voices__side">
+        {side.map((testimonial) => (
+          <blockquote data-reveal>
+            <p>“{testimonial.quote}”</p>
+            <footer>{testimonial.name} · {testimonial.detail}</footer>
+          </blockquote>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

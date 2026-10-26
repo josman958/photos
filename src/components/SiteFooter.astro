@@ -1,0 +1,57 @@
+---
+import { site } from '../data/site';
+
+const marqueeWords = ['Paisaje', 'Viaje', 'Retrato', 'Huaraz', 'Perú', '2026'];
+const marquee = [...marqueeWords, ...marqueeWords];
+---
+
+<footer class="footer">
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track" data-marquee>
+      {marquee.map((word) => <span>{word}</span>)}
+    </div>
+  </div>
+
+  <div class="shell footer__main">
+    <div>
+      <p class="footer__brand">Josman<br /><em>Fotografía</em></p>
+      <p class="footer__tagline">
+        Paisaje, viaje y retrato. Con base en Huaraz, caminando donde la luz
+        decida.
+      </p>
+    </div>
+
+    <div class="footer__nav">
+      <div>
+        <h3>Explorar</h3>
+        <ul>
+          {site.nav.map((item) => (
+            <li><a href={item.href}>{item.label}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h3>Social</h3>
+        <ul>
+          {site.socials.map((social) => (
+            <li>
+              <a
+                href={social.href}
+                target={social.href.startsWith('http') ? '_blank' : undefined}
+                rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              >
+                {social.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell footer__bottom">
+    <span>© 2026 Josman · Todos los derechos reservados</span>
+    <span>Hecho a mano en Huaraz, Perú</span>
+    <a class="footer__top" href="#inicio">Volver arriba <span aria-hidden="true">↑</span></a>
+  </div>
+</footer>

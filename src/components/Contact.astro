@@ -1,0 +1,60 @@
+---
+import { site } from '../data/site';
+
+const whatsapp = site.socials.find((social) => social.label === 'WhatsApp');
+const instagram = site.socials.find((social) => social.label === 'Instagram');
+---
+
+<section class="contact" id="contacto">
+  <div class="contact__glow" aria-hidden="true"></div>
+
+  <div class="shell contact__inner">
+    <p class="eyebrow eyebrow--light" data-reveal>07 — Contacto</p>
+
+    <h2 class="contact__title" data-split>
+      ¿Tienes una ruta<br />
+      <em>en mente?</em>
+    </h2>
+
+    <div class="contact__grid">
+      <div data-reveal>
+        <a
+          class="contact__mail"
+          href={`mailto:${site.email}?subject=Proyecto%20fotogr%C3%A1fico`}
+        >
+          {site.email}
+          <span aria-hidden="true">↗</span>
+        </a>
+        <p class="contact__availability">
+          Agenda abierta para 2026.<br />
+          Respondo en <strong>24–48 horas</strong>.
+        </p>
+      </div>
+
+      <div class="contact__aside" data-reveal>
+        <a
+          class="contact__link"
+          href={whatsapp?.href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span>WhatsApp</span>
+          <span>{site.phoneDisplay} ↗</span>
+        </a>
+        <a
+          class="contact__link"
+          href={instagram?.href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span>Instagram</span>
+          <span>{site.instagramHandle} ↗</span>
+        </a>
+        <p class="contact__link">
+          <span>Base</span>
+          <span>{site.location}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

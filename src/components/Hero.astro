@@ -1,0 +1,75 @@
+---
+import { Picture } from 'astro:assets';
+import { hero } from '../data/photos';
+---
+
+<section class="hero" id="inicio" data-hero>
+  <div class="hero__paper" aria-hidden="true">
+    <div class="shell hero__paper-inner">
+      <p class="eyebrow">01 — Cordillera Blanca</p>
+      <p class="hero__paper-quote">
+        El paisaje empieza<br />
+        <em>donde termina la ruta.</em>
+      </p>
+      <div class="hero__paper-meta">
+        <span>9°31′ S</span>
+        <span>77°31′ O</span>
+        <span>Huaraz, Perú</span>
+      </div>
+    </div>
+  </div>
+
+  <canvas
+    class="hero__canvas"
+    data-hero-canvas
+    aria-hidden="true"
+  ></canvas>
+
+  <div class="hero__fallback" data-hero-fallback>
+    <Picture
+      src={hero.src}
+      alt={hero.alt}
+      formats={['avif', 'webp']}
+      widths={[800, 1200, 1600, 2000]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      quality={78}
+    />
+  </div>
+
+  <div class="hero__shade" data-hero-shade></div>
+
+  <div class="shell hero__content" data-hero-content>
+    <div class="hero__top">
+      <p class="eyebrow">Fotografía de paisaje, viaje y retrato</p>
+      <div class="hero__coordinates">
+        <span>Huaraz · Perú</span><br />
+        <span>2026</span>
+      </div>
+    </div>
+
+    <h1 class="hero__title">
+      La luz
+      <em>también viaja.</em>
+    </h1>
+
+    <div class="hero__bottom">
+      <p class="hero__intro">
+        Documento rutas, silencios y la forma en que la montaña cambia con la luz.
+        Con base en Huaraz, disponible para proyectos en todo el Perú.
+      </p>
+      <a
+        class="hero__scroll"
+        href="#sobre-mi"
+        aria-label="Desliza para explorar"
+        data-hero-scroll
+      >
+        <span>Desliza para explorar</span>
+        <span class="hero__scroll-line" aria-hidden="true"></span>
+      </a>
+    </div>
+  </div>
+
+  <span class="hero__index" aria-hidden="true">Fotografía · 2026</span>
+</section>

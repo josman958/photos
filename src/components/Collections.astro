@@ -1,0 +1,50 @@
+---
+import Media from './Media.astro';
+import { collections } from '../data/photos';
+---
+
+<section class="collections section section--line" id="servicios">
+  <div class="shell">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow" data-reveal>05 — Servicios</p>
+        <h2 class="section-title" data-split>
+          Tres formas<br />
+          <em>de mirar.</em>
+        </h2>
+      </div>
+      <p class="section-head__aside" data-reveal>
+        Proyectos editoriales, marcas, viajes y retratos. También rutas privadas
+        para quien quiere llevarse algo más que una foto.
+      </p>
+    </header>
+
+    <div class="collections__grid">
+      {collections.map((collection) => (
+        <a
+          class="collection"
+          href="#contacto"
+          aria-label={`Consultar por ${collection.name}`}
+        >
+          <div class="collection__media">
+            <Media
+              src={collection.src}
+              alt={collection.alt}
+              widths={collection.widths}
+              sizes={collection.sizes}
+              ratio={collection.ratio}
+              parallax={0.1}
+              hover
+            />
+          </div>
+          <div class="collection__meta">
+            <h3 class="collection__name">{collection.name}</h3>
+            <span class="collection__number">{collection.number}</span>
+          </div>
+          <p class="collection__copy">{collection.copy}</p>
+          <span class="collection__arrow" aria-hidden="true">Consultar ↗</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
