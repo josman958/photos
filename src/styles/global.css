@@ -1050,22 +1050,71 @@ html.hero-burned .site-header:not(.is-menu-open)::before {
   min-height: 100svh;
   overflow: hidden;
   color: var(--paper);
-  background: #0b101b;
+  background: var(--paper);
+  perspective: 1200px;
 }
 
-.interlude__bg {
+.interlude__scene {
   position: absolute;
-  inset: -12% 0;
+  inset: 0;
   z-index: 0;
+  transform-style: preserve-3d;
   will-change: transform;
 }
 
-.interlude__bg img {
+.interlude__layer {
+  position: absolute;
+  inset: -12% -10%;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.interlude__layer--back {
+  z-index: 0;
+}
+
+.interlude__layer--front {
+  z-index: 1;
+}
+
+.interlude__layer img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 60%;
-  filter: saturate(0.92);
+  object-position: 0% 60%;
+}
+
+.interlude__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--paper);
+  opacity: 1;
+  transition: opacity 0.5s var(--ease-out);
+}
+
+.interlude.is-webgl .interlude__veil,
+.interlude.no-burn .interlude__veil {
+  opacity: 0;
+}
+
+.interlude__burn {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out);
+}
+
+.interlude.is-webgl .interlude__burn {
+  opacity: 1;
 }
 
 .interlude::after {
@@ -1081,8 +1130,27 @@ html.hero-burned .site-header:not(.is-menu-open)::before {
 
 .interlude__content {
   position: relative;
-  z-index: 2;
+  z-index: 4;
+  display: grid;
   padding-block: clamp(4rem, 10vh, 8rem);
+}
+
+.interlude__content-layer {
+  grid-area: 1 / 1;
+}
+
+.interlude__content-layer--paper {
+  color: var(--ink);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.interlude__content-layer--paper .interlude__note {
+  color: var(--muted);
+}
+
+.interlude__content-layer--paper .interlude__note span:first-child {
+  color: var(--ink);
 }
 
 .interlude__grid {
@@ -1663,8 +1731,18 @@ html.hero-burned .site-header:not(.is-menu-open)::before {
     display: none;
   }
 
+  .interlude__veil {
+    opacity: 0;
+  }
+
   html {
     scroll-behavior: auto;
+  }
+}
+
+@media (scripting: none) {
+  .interlude__veil {
+    opacity: 0;
   }
 }
 

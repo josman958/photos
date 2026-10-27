@@ -3,6 +3,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import ScrollSmoother from 'gsap/ScrollSmoother';
 import { SplitText } from 'gsap/SplitText';
 import { initHeroBurn } from './burn';
+import { initInterlude } from './interlude';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
 
@@ -158,6 +159,9 @@ export async function initMotion() {
     effects: false,
     normalizeScroll: false,
   });
+
+  // El interlude se prepara antes de fuentes para que su pin no mueva el layout.
+  initInterlude();
 
   await document.fonts.ready;
 

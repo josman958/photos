@@ -16,7 +16,8 @@ import hiker from '../assets/fill/hiker.jpg';
 import portraitMan from '../assets/fill/portrait-man.jpg';
 import portraitWoman from '../assets/fill/portrait-woman.jpg';
 import peaks from '../assets/fill/peaks.jpg';
-import nightPeak from '../assets/fill/night-peak.jpg';
+import interludePhoto from '../assets/fill/IMG_0230.jpg';
+import interludeForeground from '../assets/fill/IMG_0230.png';
 import valley from '../assets/fill/valley.jpg';
 
 export type Category = 'Paisaje' | 'Viaje' | 'Retrato';
@@ -143,10 +144,11 @@ export const gallery: GalleryPhoto[] = [
 ];
 
 export const interlude = {
-  src: nightPeak,
-  alt: 'Cielo estrellado con la Vía Láctea sobre montañas nevadas.',
+  src: interludePhoto,
+  foreground: interludeForeground,
+  alt: 'Persona sentada a la orilla de una laguna turquesa rodeada de montañas, con picos nevados al fondo.',
   quote: 'La montaña no se conquista: se escucha.',
-  note: 'Cuaderno de ruta · 03:40 a.m.',
+  note: 'Cuaderno de ruta · 10:15 a.m.',
 };
 
 export const collections = [

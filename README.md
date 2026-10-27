@@ -4,7 +4,7 @@ Landing page de fotografía de paisaje, viaje y retrato, construida con Astro y 
 
 - Sitio: https://josman958.github.io/photos/
 - Stack: Astro 7, GSAP 3.15, WebGL (shader propio), CSS.
-- Animaciones: quema del hero con shader, parallax por capas, revelados de imágenes y textos, scroll suave y lightbox.
+- Animaciones: quema del hero con shader, quema de apertura/cierre del interlude, parallax 3D por capas, revelados de imágenes y textos, scroll suave y lightbox.
 
 ## Comandos
 
@@ -63,6 +63,16 @@ El diseño está pensado para 8 fotos en la galería. Si añades más, las adici
 
 El hero usa `IMG_7957.jpeg` y la quema se genera en `src/scripts/burn.ts` con un shader WebGL propio. El texto se desvanece al inicio del scroll y el papel crema aparece debajo. Si la foto del hero cambia, actualiza el import en `src/data/photos.ts`; el shader tomará la versión optimizada automáticamente.
 
+### Interlude
+
+La foto del interlude son dos capas: `IMG_0230.jpg` (fondo) e `IMG_0230.png` (la persona recortada). Se editan en `src/data/photos.ts`.
+
+El quemado es una cubierta color papel con borde carbonizado y brasas. Primero sube desde abajo y descubre la foto; al final vuelve a subir desde abajo para taparla. La cubierta nunca tiñe la foto: el shader solo dibuja el papel y el borde de fuego.
+
+La cita tiene dos versiones: tinta sobre el papel y clara sobre la foto. Se cruzan con la quema, así el texto aparece desde el inicio y vuelve al terminar.
+
+La profundidad se hace con las dos capas superpuestas en `position: absolute`, cada una con distinta velocidad en GSAP, `perspective` y `translateZ` para separar el fondo de la persona. Todo está en `src/scripts/interlude.ts`.
+
 ### Estilo
 
 - `src/styles/global.css`: variables de color, tipografía, layout y responsive.
@@ -79,7 +89,8 @@ src/
 ├─ layouts/BaseLayout.astro
 ├─ pages/index.astro
 ├─ scripts/
-│  ├─ burn.ts              # shader de quema + ScrollTrigger
+│  ├─ burn.ts              # quema del hero + ScrollTrigger
+│  ├─ interlude.ts         # quema crema y parallax de las dos capas
 │  ├─ motion.ts            # GSAP, ScrollSmoother, reveals, parallax
 │  ├─ lightbox.ts
 │  └─ ui.ts                # header, menú, anclas, progreso

@@ -3,29 +3,67 @@ import { Image } from 'astro:assets';
 import { interlude } from '../data/photos';
 ---
 
-<section class="interlude" data-parallax-scope>
-  <div class="interlude__bg" data-parallax="0.14">
-    <Image
-      src={interlude.src}
-      alt={interlude.alt}
-      widths={[1000, 1600, 2200]}
-      sizes="100vw"
-      loading="lazy"
-      format="webp"
-      quality={80}
-    />
+<section class="interlude" data-interlude>
+  <div class="interlude__scene" data-interlude-scene>
+    <div class="interlude__layer interlude__layer--back" data-interlude-depth="back">
+      <Image
+        src={interlude.src}
+        alt={interlude.alt}
+        widths={[1000, 1600, 2000]}
+        sizes="100vw"
+        loading="lazy"
+        format="webp"
+        quality={82}
+      />
+    </div>
+
+    <div class="interlude__layer interlude__layer--front" data-interlude-depth="front">
+      <Image
+        src={interlude.foreground}
+        alt=""
+        widths={[800, 1200, 1600]}
+        sizes="100vw"
+        loading="lazy"
+        format="webp"
+        quality={82}
+      />
+    </div>
   </div>
 
+  <div class="interlude__veil" aria-hidden="true"></div>
+  <canvas class="interlude__burn" data-interlude-canvas aria-hidden="true"></canvas>
+
   <div class="shell interlude__content">
-    <div class="interlude__grid">
-      <div data-reveal>
+    <div
+      class="interlude__grid interlude__content-layer interlude__content-layer--photo"
+      data-interlude-content="photo"
+    >
+      <div>
         <p class="eyebrow eyebrow--light">04 — Cuaderno de ruta</p>
         <blockquote class="interlude__quote" style="margin-top: 1.5rem">
           {interlude.quote}
         </blockquote>
       </div>
 
-      <div class="interlude__note" data-reveal>
+      <div class="interlude__note">
+        <span>{interlude.note}</span>
+        <span>Sin señal. Solo el sonido del viento.</span>
+      </div>
+    </div>
+
+    <div
+      class="interlude__grid interlude__content-layer interlude__content-layer--paper"
+      data-interlude-content="paper"
+      aria-hidden="true"
+    >
+      <div>
+        <p class="eyebrow">04 — Cuaderno de ruta</p>
+        <blockquote class="interlude__quote" style="margin-top: 1.5rem">
+          {interlude.quote}
+        </blockquote>
+      </div>
+
+      <div class="interlude__note">
         <span>{interlude.note}</span>
         <span>Sin señal. Solo el sonido del viento.</span>
       </div>
